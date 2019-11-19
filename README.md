@@ -17,10 +17,10 @@ Or install it yourself as:
 ## Usage
 
 
-client = VsWare::Client.new(school_name, api_key, password, user, vendor)
-client.student.each do |stu|
-  puts "#{stu["familyName"]} #{stu["givenName"]}"
-end
+client = VsWare::Client.new(school_name, api_key, password, user, vendor)<br/>
+client.student.each do |stu|<br/>
+  puts "#{stu["familyName"]} #{stu["givenName"]}"<br/>
+end<br/>
 
 ## Development
 
