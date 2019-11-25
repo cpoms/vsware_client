@@ -16,15 +16,19 @@ module Vsware
     classgroup
     registrationattendance 
     studentclasses 
-    teachers 
+    teachers
     teachinggroup
+    students_images
+    teachers_images
     ).each do |resource|
       define_method resource do |options ={}|
-        resource = resource.delete("_")
+        resource = resource.tr("_","/")
+        #resource = resource.delete("_")
         response = http_get_request(resource, params: options)
 
         case response.status
         when 200
+          puts resource
           response = JSON.parse(response.body)
           raise "#{response["errorMessage"]}" if response["errorMessage"]
           
@@ -43,7 +47,7 @@ module Vsware
         username: @user,
         vendor: @vendor
       }
-      Excon.get("#{@url}#{path}/fetch?#{URI.encode_www_form(auth_params.merge(options[:params]))}")
+        Excon.get("#{@url}#{path =~ /\// ? path : "#{path}/fetch"}?#{URI.encode_www_form(auth_params.merge(options[:params]))}")
     end
 
   end
