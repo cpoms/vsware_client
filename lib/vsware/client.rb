@@ -3,7 +3,7 @@ require "json"
 
 module Vsware
   class Client
-    def initialize(school_name, api_key, password, user, vendor)
+    def initialize(school_name, api_key, password, user, vendor, options = {})
       @url = "https://api.vsware.ie/api/200/#{school_name}/"
       @api_key = api_key
       @password = password
